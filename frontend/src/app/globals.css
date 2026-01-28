@@ -1,0 +1,205 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 240 10% 4%;
+    --foreground: 0 0% 98%;
+    --muted: 240 5% 15%;
+    --muted-foreground: 240 5% 65%;
+    --primary: 270 91% 65%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 240 5% 15%;
+    --secondary-foreground: 0 0% 98%;
+    --accent: 270 91% 65%;
+    --accent-foreground: 0 0% 100%;
+    --border: 240 5% 20%;
+    --input: 240 5% 15%;
+    --ring: 270 91% 65%;
+    --radius: 0.75rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-dark text-white antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* Scrollbar personalizada */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-dark-100;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-purple-900/50 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-purple-800/70;
+  }
+}
+
+@layer components {
+  /* Glassmorphism Card */
+  .glass-card {
+    @apply relative overflow-hidden rounded-2xl;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.1) 0%,
+      rgba(255, 255, 255, 0.05) 100%
+    );
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .glass-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent
+    );
+  }
+
+  /* Sidebar Item */
+  .sidebar-item {
+    @apply flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200;
+    @apply text-gray-400 hover:text-white hover:bg-white/5;
+  }
+
+  .sidebar-item.active {
+    @apply text-white bg-purple-500/20;
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.2);
+  }
+
+  .sidebar-item.active::before {
+    content: "";
+    @apply absolute left-0 w-1 h-8 bg-purple-500 rounded-r-full;
+  }
+
+  /* Gradient Button */
+  .btn-gradient {
+    @apply relative px-6 py-2.5 rounded-xl font-medium text-white overflow-hidden;
+    background: linear-gradient(135deg, #a855f7 0%, #7c3aed 50%, #6366f1 100%);
+    transition: all 0.3s ease;
+  }
+
+  .btn-gradient:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(168, 85, 247, 0.4);
+  }
+
+  .btn-gradient:active {
+    transform: translateY(0);
+  }
+
+  /* Glow effect on hover */
+  .hover-glow {
+    @apply transition-all duration-300;
+  }
+
+  .hover-glow:hover {
+    box-shadow: 0 0 30px rgba(168, 85, 247, 0.3);
+    border-color: rgba(168, 85, 247, 0.5);
+  }
+
+  /* Input styling */
+  .input-dark {
+    @apply w-full px-4 py-3 rounded-xl bg-dark-100 border border-white/10;
+    @apply text-white placeholder-gray-500;
+    @apply focus:outline-none focus:border-purple-500/50 focus:ring-2 focus:ring-purple-500/20;
+    @apply transition-all duration-200;
+  }
+
+  /* Backdrop overlay */
+  .backdrop-overlay {
+    @apply fixed inset-0 bg-black/60 backdrop-blur-sm;
+  }
+
+  /* Chat message styling */
+  .chat-message-user {
+    @apply bg-purple-500/20 border border-purple-500/30 text-white;
+  }
+
+  .chat-message-assistant {
+    @apply bg-white/5 border border-white/10 text-gray-100;
+  }
+}
+
+@layer utilities {
+  /* Gradient text */
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+  }
+
+  /* Background patterns */
+  .bg-grid-pattern {
+    background-image: linear-gradient(
+        rgba(168, 85, 247, 0.03) 1px,
+        transparent 1px
+      ),
+      linear-gradient(90deg, rgba(168, 85, 247, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+
+  /* Animated gradient background */
+  .bg-gradient-animated {
+    background: linear-gradient(-45deg, #0a0a0f, #1a1a2e, #16162a, #0d0d14);
+    background-size: 400% 400%;
+    animation: gradient-shift 15s ease infinite;
+  }
+
+  @keyframes gradient-shift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  /* Radial gradient overlay */
+  .bg-radial-purple {
+    background: radial-gradient(
+      ellipse at top,
+      rgba(168, 85, 247, 0.15) 0%,
+      transparent 50%
+    );
+  }
+
+  /* Hide scrollbar but keep functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
